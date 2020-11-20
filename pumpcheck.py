@@ -1,24 +1,49 @@
 from tkinter import *
 import matplotlib
 matplotlib.use("TkAgg")
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbarTkAgg
-from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg 
+import matplotlib.pyplot as plt
 
 def btn_click():
     #reading variables
     pp = textbox1.get()
     pp = float(pp.replace(',','.'))
-    vmin = textbox1.get()
+    vmin = textbox2.get()
     vmin = float(vmin.replace(',','.'))
     h = textbox3.get()
     h = float(h.replace(',','.'))
-    vcap = textbox3.get()
-    vcamp = float(vcap.replace(',','.'))
+    vcap = textbox4.get()
+    vcap = float(vcap.replace(',','.'))
 
+    vmin_conv = vmin / 3600
     vmin_s = vmin / 3.6
     pt = vmin_s * h / 75 / 0.7
     resultado.set("Potência teórica (kW) {}".format(round(pt, 2)))
+    
+    axs[0].bar([0,1], [pp, pt], color="gray")
+    axs[0].axhline(y=pp, color='black', linestyle="--")
+    axs[0].axhline(y=pp*(1-0.05), color='green')
+    axs[0].annotate("-0,5%", xy=(0.5, pp*(1-0.05))
+    axs[0].axhline(y=pp*(1+0.05), color='green')
+    axs[0].axhline(y=pp*(1-0.1), color='yellow')
+    axs[0].axhline(y=pp*(1+0.1), color='yellow')
+    axs[0].axhline(y=pp*(1-0.2), color='red')
+    axs[0].axhline(y=pp*(1+0.2), color='red')
+    axs[0].set_xticks([0,1])
+    axs[0].set_xticklabels(["Proposta", "Teórica"])
 
+    axs[1].bar([0,1], [vcap, vmin_conv], color="gray")
+    axs[1].axhline(y=vcap, color='black', linestyle="--")
+    axs[1].axhline(y=vcap*(1-0.05), color='green')
+    axs[1].axhline(y=vcap*(1+0.05), color='green')
+    axs[1].axhline(y=vcap*(1-0.1), color='yellow')
+    axs[1].axhline(y=vcap*(1+0.1), color='yellow')
+    axs[1].axhline(y=vcap*(1-0.2), color='red')
+    axs[1].axhline(y=vcap*(1+0.2), color='red')
+    axs[1].set_xticks([0,1])
+    axs[1].set_xticklabels(["Captação", "Bomba"])
+
+    plt.draw()
 
 root = Tk()
 root.title("pumpcheck")
@@ -35,8 +60,8 @@ textbox1.focus()
 
 label_2 = Label(root, text="Vazão máxima (m³/h)")
 label_2.grid(row=0, column=2, sticky=W)
-textbox1 = Entry(root, width=8)
-textbox1.grid(row=0, column=3, sticky=W)
+textbox2 = Entry(root, width=8)
+textbox2.grid(row=0, column=3, sticky=W)
 
 label_3 = Label(root, text="Altura manométrica (m)")
 label_3.grid(row=0, column=4, sticky=W)
@@ -51,6 +76,19 @@ textbox4.grid(row=1, column=1, sticky=W)
 resultado = StringVar()
 label_5 = Label(root, textvariable=resultado)
 label_5.grid(row=2, column=0, sticky=W)
+
+fig, axs = plt.subplots(nrows=1, ncols=2)
+axs[0].set_title("Potência")
+axs[1].set_title("Vazão")
+axs[0].grid(linestyle='--')
+axs[1].grid(linestyle='--')
+axs[0].set_xticks([])
+axs[1].set_xticks([])
+axs[0].set_ylabel("kW")
+axs[1].set_ylabel("m³/s")
+plt.tight_layout()
+canvas = FigureCanvasTkAgg(fig, root)
+canvas.get_tk_widget().grid(row=3, columnspan=6)
 
 #botao
 btn = Button(root, text="Calcular", command=btn_click)
