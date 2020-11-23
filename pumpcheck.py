@@ -88,29 +88,29 @@ root.iconbitmap('icon_SxK_icon.ico')
 
 #labels 
 label_1 = Label(root, text="Potência da bomba (kW)")
-label_1.grid(row=0, column=0, sticky=W)
+label_1.grid(row=0, column=0, sticky=W, padx=(10, 10), pady=(5, 5))
 textbox1 = Entry(root, width=8)
-textbox1.grid(row=0, column=1, sticky=W)
+textbox1.grid(row=0, column=1, sticky=W, padx=(10, 10), pady=(5, 5))
 textbox1.focus()
 
 label_2 = Label(root, text="Vazão máxima (m³/h)")
-label_2.grid(row=0, column=2, sticky=W)
+label_2.grid(row=0, column=2, sticky=W, padx=(10, 10), pady=(5, 5))
 textbox2 = Entry(root, width=8)
-textbox2.grid(row=0, column=3, sticky=W)
+textbox2.grid(row=0, column=3, sticky=W, padx=(10, 10), pady=(5, 5))
 
 label_3 = Label(root, text="Altura manométrica (m)")
-label_3.grid(row=0, column=4, sticky=W)
+label_3.grid(row=0, column=4, sticky=W, padx=(10, 10), pady=(5, 5))
 textbox3 = Entry(root, width=8)
-textbox3.grid(row=0, column=5, sticky=W)
+textbox3.grid(row=0, column=5, sticky=W, padx=(10, 10), pady=(5, 5))
 
 label_4 = Label(root, text="Vazão captação (m³/s)")
-label_4.grid(row=1, column=0, sticky=W)
+label_4.grid(row=1, column=0, sticky=W, padx=(10, 10), pady=(5, 5))
 textbox4 = Entry(root, width=8)
-textbox4.grid(row=1, column=1, sticky=W)
+textbox4.grid(row=1, column=1, sticky=W, padx=(10, 10), pady=(5, 5))
 
 resultado = StringVar()
 label_5 = Label(root, textvariable=resultado)
-label_5.grid(row=2, column=0, sticky=W)
+label_5.grid(row=2, column=0, sticky=W, padx=(10, 10), pady=(5, 5))
 
 fig, axs = plt.subplots(nrows=1, ncols=2)
 axs[0].set_title("Potência")
@@ -127,6 +127,6 @@ canvas.get_tk_widget().grid(row=3, columnspan=6, padx=(10, 10), pady=(10, 10))
 
 #botao
 btn = Button(root, text="Calcular", command=btn_click)
-btn.grid(row=2, column=5, sticky=E)
+btn.grid(row=2, column=5, sticky=E, padx=(10, 10), pady=(5, 5))
 
 root.mainloop()
