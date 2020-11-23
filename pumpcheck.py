@@ -5,6 +5,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 8
 
+
 def quit_me():
     print('quit')
     root.quit()
@@ -37,7 +38,7 @@ def btn_click():
     axs[1].set_xticks([])
     axs[0].set_ylabel("kW")
     axs[1].set_ylabel("m³/s")
-    plt.tight_layout()
+ 
     canvas = FigureCanvasTkAgg(fig, root)
     canvas.get_tk_widget().grid(row=3, columnspan=6)
     
@@ -74,6 +75,8 @@ def btn_click():
     axs[1].annotate("+20%", xy=(0, vcap*(1+0.2)), fontsize=7, color="red")
     axs[1].set_xticks([0,1])
     axs[1].set_xticklabels(["Captação", "Bomba"])
+
+    plt.tight_layout()
 
     plt.draw()
 
@@ -120,7 +123,7 @@ axs[0].set_ylabel("kW")
 axs[1].set_ylabel("m³/s")
 plt.tight_layout()
 canvas = FigureCanvasTkAgg(fig, root)
-canvas.get_tk_widget().grid(row=3, columnspan=6)
+canvas.get_tk_widget().grid(row=3, columnspan=6, padx=(10, 10), pady=(10, 10))
 
 #botao
 btn = Button(root, text="Calcular", command=btn_click)
