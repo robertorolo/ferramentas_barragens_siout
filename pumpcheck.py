@@ -4,6 +4,11 @@ matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg 
 import matplotlib.pyplot as plt
 
+def quit_me():
+    print('quit')
+    root.quit()
+    root.destroy()
+
 def btn_click():
     #reading variables
     pp = textbox1.get()
@@ -72,8 +77,8 @@ def btn_click():
     plt.draw()
 
 root = Tk()
+root.protocol("WM_DELETE_WINDOW", quit_me)
 root.title("pumpcheck")
-#root.geometry("750x400")
 root.resizable(False, False)
 root.iconbitmap('icon_SxK_icon.ico')
 
