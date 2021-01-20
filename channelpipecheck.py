@@ -54,7 +54,9 @@ combobox2 = ttk.Combobox(tab1, width=8,
                                 0.2, 
                                 0.3,
                                 0.5,
-                                0.8])
+                                0.8,
+                                1.0,
+                                1.2])
 combobox2.grid(row=1, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
 
 resultado1 = StringVar()
@@ -78,7 +80,9 @@ combobox2c = ttk.Combobox(tab2, width=8,
                                 0.2, 
                                 0.3,
                                 0.5,
-                                0.8])
+                                0.8,
+                                1.0,
+                                1.2])
 combobox2c.grid(row=1, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
 
 resultado2c = StringVar()
