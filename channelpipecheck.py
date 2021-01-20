@@ -59,6 +59,7 @@ combobox2 = ttk.Combobox(tab1, width=8,
                                 1.2,
                                 2,
                                 3,
+                                3.5,
                                 4,
                                 5,
                                 6,
@@ -94,6 +95,7 @@ combobox2c = ttk.Combobox(tab2, width=8,
                                 1.2,
                                 2,
                                 3,
+                                3.5,
                                 4,
                                 5,
                                 6,
@@ -110,6 +112,5 @@ label_51c.grid(row=3, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
 #botao
 btn1c = Button(tab2, text="Calcular", command=btn2_click)
 btn1c.grid(row=3, column=0, sticky=W, padx=(5, 5), pady=(5, 5))
-
 
 root.mainloop()
