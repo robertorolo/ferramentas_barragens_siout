@@ -25,7 +25,9 @@ def btn_click():
     p = float(textbox5.get())
     
     maxout = qref * (1 - (p/100))
-    maxcapt = qrem - maxout
+    maxcapt = qref - maxout
+    print('máxima outorgável: {}'.format(round(maxout,2)))
+    print('máxima captação: {}'.format(round(maxcapt,2)))
     
     if qrem > maxout:
         qremresult = 'OK'
