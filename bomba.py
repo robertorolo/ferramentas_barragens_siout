@@ -86,7 +86,7 @@ root = Tk()
 root.protocol("WM_DELETE_WINDOW", quit_me)
 root.title("pumpcheck")
 root.resizable(False, False)
-root.iconbitmap('icon_SxK_icon.ico')
+#root.iconbitmap('icon_SxK_icon.ico')
 
 #labels 
 label_1 = Label(root, text="Potência da bomba (kW)")
