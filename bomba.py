@@ -84,7 +84,7 @@ def btn_click():
 
 root = Tk()
 root.protocol("WM_DELETE_WINDOW", quit_me)
-root.title("pumpcheck")
+root.title("Bombas")
 root.resizable(False, False)
 #root.iconbitmap('icon_SxK_icon.ico')
 
