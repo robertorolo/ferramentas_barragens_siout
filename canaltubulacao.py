@@ -28,7 +28,7 @@ def btn2_click():
 
 root = Tk()
 root.protocol("WM_DELETE_WINDOW", quit_me)
-root.title("channelpipecheck")
+root.title("Canais e tubulações")
 root.resizable(False, False)
 
 tabControl = ttk.Notebook(root)
