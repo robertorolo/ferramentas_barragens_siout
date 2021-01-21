@@ -53,7 +53,7 @@ def btn_click():
     
 root = Tk()
 root.protocol("WM_DELETE_WINDOW", quit_me)
-root.title("hydricbalance")
+root.title("Balanço hídrico")
 root.resizable(True, True)
 
 label_1 = Label(root, text="Volume armazenado (m³)")
