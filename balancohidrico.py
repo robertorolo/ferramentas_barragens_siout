@@ -26,8 +26,8 @@ def btn_click():
     
     maxout = qref * (1 - (p/100))
     maxcapt = qref - maxout
-    print('máxima outorgável: {}'.format(round(maxout,2)))
-    print('máxima captação: {}'.format(round(maxcapt,2)))
+    print('máxima outorgável: {}'.format(round(maxout,5)))
+    print('máxima captação: {}'.format(round(maxcapt,5)))
     
     if qrem > maxout:
         qremresult = 'OK'
