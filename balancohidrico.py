@@ -11,7 +11,7 @@ def quit_me():
 
 def btn_click():
     v = textbox1.get()
-    v = float(v.replace(',','.'))
+    v = float(v.replace('.',''))
     
     qrem = textbox2.get()
     qrem = float(qrem.replace(',','.'))
@@ -31,6 +31,8 @@ def btn_click():
     
     if qrem > maxout:
         qremresult = 'OK'
+        if qrem > qref:
+            qremresult = 'qrem > qref'
     else:
         perct = 100 - qrem/maxout * 100
         qremresult = 'Não OK em {}%'.format(round(perct, 1))
