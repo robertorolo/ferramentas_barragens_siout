@@ -71,7 +71,7 @@ combobox2.grid(row=1, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
 
 resultado1 = StringVar()
 label_51 = Label(tab1, textvariable=resultado1)
-label_51.grid(row=3, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
+label_51.grid(row=3, column=1, padx=(5, 5), pady=(5, 5))
 
 #botao
 btn1 = Button(tab1, text="Calcular", command=btn1_click)
@@ -107,7 +107,10 @@ combobox2c.grid(row=1, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
 
 resultado2c = StringVar()
 label_51c = Label(tab2, textvariable=resultado2c)
-label_51c.grid(row=3, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
+label_51c.grid(row=3, column=1, padx=(5, 5), pady=(5, 5))
+
+resultado1.set("Diâmtro interno teórico (mm) {}".format('    '))
+resultado2c.set("Área da seção teórica (m²) {}".format('   '))
 
 #botao
 btn1c = Button(tab2, text="Calcular", command=btn2_click)
