@@ -32,12 +32,14 @@ def btn_click():
     if qrem > maxout:
         qremresult = 'OK'
     else:
-        qremresult = 'Não OK'
+        perct = 100 - qrem/maxout * 100
+        qremresult = 'Não OK em {}%'.format(round(perct, 1))
         
     if qcap < maxcapt:
         qcapresult = 'OK'
     else:
-        qcapresult = 'Não OK'
+        perct = 100 - qcap/maxcapt * 100
+        qcapresult = 'Não OK em {}%'.format(round(np.abs(perct), 2))
         
     r1 = '''vazão remanescente proposta: {}\nvazão de captação proposta: {}'''.format(qremresult, qcapresult)
     resultado1.set(r1)
