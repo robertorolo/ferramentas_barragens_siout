@@ -11,10 +11,10 @@ def quit_me():
 
 def btn_click():
     v = textbox1.get()
-    v = float(v.replace('.',''))
+    v = float(v.replace('.','').replace(',','.'))
 
     v_anual = textbox12.get()
-    v_anual =  float(v_anual.replace('.',''))
+    v_anual =  float(v_anual.replace('.','').replace(',','.'))
     
     qrem = textbox2.get()
     qrem = float(qrem.replace(',','.'))
