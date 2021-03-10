@@ -17,13 +17,15 @@ def btn_click():
     v_anual =  float(v_anual.replace('.','').replace(',','.'))
     
     qrem = textbox2.get()
-    qrem = float(qrem.replace(',','.'))
+    qrem = float(qrem.replace('.','').replace(',','.'))
     
     qref = textbox3.get()
-    qref = float(qref.replace(',','.'))
+    qref = float(qref.replace('.','').replace(',','.'))
     
     qcap = textbox4.get()
-    qcap = float(qcap.replace(',','.'))
+    qcap = float(qcap.replace('.','').replace(',','.'))
+
+    unidade =  comboExample.get()
     
     p = float(textbox5.get())
     
@@ -39,15 +41,20 @@ def btn_click():
     else:
         perct = 100 - qrem/maxout * 100
         qremresult = 'Não OK em {}%'.format(round(perct, 1))
-        
+
+    resultado3.set(qremresult)  
+    
+    if unidade == "m³/h":
+        qcap = qcap/(60*60)
+        print('vazão de captação transformada: ',qcap)
+    
     if qcap < maxcapt:
         qcapresult = 'OK'
     else:
         perct = 100 - qcap/maxcapt * 100
         qcapresult = 'Não OK em {}%'.format(round(np.abs(perct), 2))
         
-    r1 = '''vazão remanescente proposta: {}\nvazão de captação proposta: {}'''.format(qremresult, qcapresult)
-    resultado1.set(r1)
+    resultado1.set(qcapresult)
     
     qvert = qref - (qrem + qcap)
     
@@ -58,12 +65,12 @@ def btn_click():
     else:
         r = 'vazão vertida: {}'.format(round(qvert, 2))
         
-    resultado.set(r)
+    #resultado.set(r)
 
     if v_anual > v:
-        r = 'Volume anual = {} x volume armazenado'.format(round(v_anual/v,2))
+        r = 'anual = {} x armazenado'.format(round(v_anual/v,2))
     else:
-        r = 'Volume anual OK'
+        r = 'anual OK'
 
     resultado2.set(r)
     
@@ -98,22 +105,29 @@ textbox5 = Entry(root, width=8)
 textbox5.grid(row=4, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
 textbox5.insert(END, '50')
 
-label_4 = Label(root, text="Vazão de captação (m³/s)")
+label_4 = Label(root, text="Vazão de captação")
 label_4.grid(row=5, column=0, sticky=W, padx=(5, 5), pady=(5, 5))
 textbox4 = Entry(root, width=8)
-textbox4.grid(row=5, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
+textbox4.grid(row=5, column=1, sticky=W, padx=(5, 5), pady=(5, 5))
+units=["m³/s", "m³/h"]
+comboExample = ttk.Combobox(root, values=units, width=8)
+comboExample.grid(row=5, column=2, sticky=W, padx=(5, 5), pady=(5, 5))
 
-resultado = StringVar()
-label_5 = Label(root, textvariable=resultado)
-label_5.grid(row=8, column=0, columnspan = 2, padx=(5, 5), pady=(5, 5))
+#resultado = StringVar()
+#label_5 = Label(root, textvariable=resultado)
+#label_5.grid(row=8, column=0, columnspan = 2, padx=(5, 5), pady=(5, 5))
 
 resultado1 = StringVar()
 label_6 = Label(root, textvariable=resultado1)
-label_6.grid(row=7, column=0, columnspan = 2, padx=(5, 5), pady=(5, 5))
+label_6.grid(row=5, column=3, sticky=W, padx=(5, 5), pady=(5, 5))
 
 resultado2 = StringVar()
 label_7 = Label(root, textvariable=resultado2)
-label_7.grid(row=9, column=0, columnspan = 2, padx=(5, 5), pady=(5, 5))
+label_7.grid(row=1, column=3, padx=(5, 5), pady=(5, 5), sticky=W)
+
+resultado3 = StringVar()
+label_8 = Label(root, textvariable=resultado3)
+label_8.grid(row=2, column=3, padx=(5, 5), pady=(5, 5), sticky=W)
 
 #botao
 btn = Button(root, text="Calcular", command=btn_click)
