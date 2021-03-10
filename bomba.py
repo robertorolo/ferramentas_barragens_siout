@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from tkinter import *
+from tkinter import ttk
 import matplotlib
 matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg 
@@ -16,14 +17,19 @@ def quit_me():
 def btn_click():
     #reading variables
     pp = textbox1.get()
-    pp = float(pp.replace(',','.'))
+    pp = float(pp.replace('.','').replace(',','.'))
     vmin = textbox2.get()
-    vmin = float(vmin.replace(',','.'))
+    vmin = float(vmin.replace('.','').replace(',','.'))
     h = textbox3.get()
-    h = float(h.replace(',','.'))
+    h = float(h.replace('.','').replace(',','.'))
     vcap = textbox4.get()
-    vcap = float(vcap.replace(',','.'))
-
+    vcap = float(vcap.replace('.','').replace(',','.'))
+    unidade =  comboExample.get()
+    
+    if unidade == "m³/h":
+        vcap = vcap / 3600
+        print('vazão de captação transformada: ',vcap)
+    
     vmin_conv = vmin / 3600
     vmin_s = vmin / 3.6
     pt = vmin_s * h / 75 / 0.7
@@ -105,10 +111,13 @@ label_3.grid(row=0, column=4, sticky=W, padx=(10, 10), pady=(5, 5))
 textbox3 = Entry(root, width=8)
 textbox3.grid(row=0, column=5, sticky=W, padx=(10, 10), pady=(5, 5))
 
-label_4 = Label(root, text="Vazão captação (m³/s)")
+label_4 = Label(root, text="Vazão captação")
 label_4.grid(row=1, column=0, sticky=W, padx=(10, 10), pady=(5, 5))
 textbox4 = Entry(root, width=8)
 textbox4.grid(row=1, column=1, sticky=W, padx=(10, 10), pady=(5, 5))
+units=["m³/s", "m³/h"]
+comboExample = ttk.Combobox(root, values=units, width=8)
+comboExample.grid(row=1, column=2, sticky=W, padx=(5, 5), pady=(5, 5))
 
 resultado = StringVar()
 label_5 = Label(root, textvariable=resultado)
