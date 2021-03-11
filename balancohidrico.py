@@ -70,7 +70,7 @@ def btn_click():
     if v_anual > v:
         r = 'anual = {} x armazenado'.format(round(v_anual/v,2))
     else:
-        r = 'anual OK'
+        r = 'OK'
 
     resultado2.set(r)
     
@@ -108,7 +108,7 @@ textbox5.insert(END, '50')
 label_4 = Label(root, text="Vazão de captação")
 label_4.grid(row=5, column=0, sticky=W, padx=(5, 5), pady=(5, 5))
 textbox4 = Entry(root, width=8)
-textbox4.grid(row=5, column=1, sticky=W, padx=(5, 5), pady=(5, 5))
+textbox4.grid(row=5, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
 units=["m³/s", "m³/h"]
 comboExample = ttk.Combobox(root, values=units, width=8)
 comboExample.grid(row=5, column=2, sticky=W, padx=(5, 5), pady=(5, 5))
