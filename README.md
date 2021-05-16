@@ -2,10 +2,10 @@
 Ferramentas para auxiliar a análise de processos de barragem no SIOUT. As GUIs foram desenvolvidas usando o pacote Tkinter.
 
 # Balanço hídrico
-![alt text](bal_hid.png)
+![alt text](imgs/bal_hid.png)
 
 # Bomba
-![alt text](bomba.png)
+![alt text](imgs/bomba.png)
 
 # Canais e tubulações
-![alt text](canal.png)
+![alt text](imgs/canal.png)
