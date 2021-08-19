@@ -69,7 +69,7 @@ def btn_click():
     else:
         r = 'vazão vertida: {}'.format(round(qvert, 2))
         
-    #resultado.set(r)
+    resultado.set(r)
 
     if v_anual > v:
         r = 'anual = {} x armazenado'.format(round(v_anual/v,2))
@@ -117,9 +117,9 @@ units=["m³/s", "m³/h"]
 comboExample = ttk.Combobox(root, values=units, width=8)
 comboExample.grid(row=5, column=2, sticky=W, padx=(5, 5), pady=(5, 5))
 
-#resultado = StringVar()
-#label_5 = Label(root, textvariable=resultado)
-#label_5.grid(row=8, column=0, columnspan = 2, padx=(5, 5), pady=(5, 5))
+resultado = StringVar()
+label_5 = Label(root, textvariable=resultado)
+label_5.grid(row=8, column=0, columnspan = 2, padx=(5, 5), pady=(5, 5))
 
 resultado1 = StringVar()
 label_6 = Label(root, textvariable=resultado1)
