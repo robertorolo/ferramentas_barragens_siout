@@ -4,6 +4,10 @@ from tkinter import *
 from tkinter import ttk
 import numpy as np
 
+def vp(vmin, vmax):
+    vpv = (vmax-vmin)/vmin*100
+    return vpv
+
 def quit_me():
     print('quit')
     root.quit()
@@ -39,7 +43,7 @@ def btn_click():
         #if qrem > qref:
         #    qremresult = 'qrem > qref'
     else:
-        perct = 100 - qrem/maxout * 100
+        perct = vp(maxout, qrem)
         qremresult = 'Não OK em {}%'.format(round(perct, 1))
 
     resultado3.set(qremresult)  
@@ -51,7 +55,7 @@ def btn_click():
     if qcap < maxcapt:
         qcapresult = 'OK'
     else:
-        perct = 100 - qcap/maxcapt * 100
+        perct = vp(maxcapt, qcap)
         qcapresult = 'Não OK em {}%'.format(round(np.abs(perct), 2))
         
     resultado1.set(qcapresult)
