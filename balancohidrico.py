@@ -2,11 +2,10 @@
 
 from tkinter import *
 from tkinter import ttk
-import numpy as np
 
 def vp(vmin, vmax):
     vpv = (vmax-vmin)/vmin*100
-    return np.abs(vpv)
+    return abs(vpv)
 
 def quit_me():
     print('quit')
@@ -56,14 +55,14 @@ def btn_click():
         qcapresult = 'OK'
     else:
         perct = vp(maxcapt, qcap)
-        qcapresult = 'Não OK em {}%'.format(round(np.abs(perct), 2))
+        qcapresult = 'Não OK em {}%'.format(round(abs(perct), 2))
         
     resultado1.set(qcapresult)
     
     qvert = qref - (qrem + qcap)
     
     if qvert < 0:
-        t = v/np.abs(qvert)
+        t = v/abs(qvert)
         t = t/(60*60)
         r = '''esvaziamento em {} horas\nvazão vertida: {}'''.format(round(t,0), round(qvert, 2))
     else:

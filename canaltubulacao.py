@@ -2,7 +2,7 @@
 
 from tkinter import *
 from tkinter import ttk
-import numpy as np
+import math
 
 def quit_me():
     print('quit')
@@ -14,7 +14,7 @@ def btn1_click():
     q = float(q.replace(',','.'))
     v = float(combobox2.get())
     a = q/v
-    d = 2 * np.sqrt((a/np.pi)) * 1000
+    d = 2 * math.sqrt((a/math.pi)) * 1000
     d = round(d,2)
     resultado1.set("Diâmtro interno teórico (mm) {}".format(d))
     
