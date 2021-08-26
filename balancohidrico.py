@@ -6,7 +6,7 @@ import numpy as np
 
 def vp(vmin, vmax):
     vpv = (vmax-vmin)/vmin*100
-    return vpv
+    return np.abs(vpv)
 
 def quit_me():
     print('quit')
