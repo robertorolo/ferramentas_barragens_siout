@@ -45,7 +45,7 @@ def btn_click():
         qremresult = 'A vazão remanescente é inferior ao máximo outorgável.'
     else:
         perct = vp(maxout, qrem)
-        qremresult = 'A vazão remanescente é {}% maior do que máximo outorgável.'.format(round(perct, 1))
+        qremresult = 'A vazão remanescente é {}% menor do que máximo outorgável.'.format(round(perct, 1))
 
     resultado3.set(qremresult)  
     
