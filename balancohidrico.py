@@ -28,6 +28,10 @@ def btn_click():
     qcap = textbox4.get()
     qcap = float(qcap.replace('.','').replace(',','.'))
 
+    horascap = textboxhoras.get()
+    horascap = float(horascap.replace('.','').replace(',','.'))
+    diascap = int(textboxdias.get())
+
     unidade =  comboExample.get()
     
     p = float(textbox5.get())
@@ -38,12 +42,10 @@ def btn_click():
     print('máxima captação: {}'.format(round(maxcapt,5)))
     
     if qrem > maxout:
-        qremresult = 'OK'
-        #if qrem > qref:
-        #    qremresult = 'qrem > qref'
+        qremresult = 'A vazão remanescente é inferior ao máximo outorgável.'
     else:
         perct = vp(maxout, qrem)
-        qremresult = 'Não OK em {}%'.format(round(perct, 1))
+        qremresult = 'A vazão remanescente é {}% maior do que máximo outorgável.'.format(round(perct, 1))
 
     resultado3.set(qremresult)  
     
@@ -52,10 +54,10 @@ def btn_click():
         print('vazão de captação transformada: ',qcap)
     
     if qcap < maxcapt:
-        qcapresult = 'OK'
+        qcapresult = 'A vazão captada é menor do que o máximo permitido.'
     else:
         perct = vp(maxcapt, qcap)
-        qcapresult = 'Não OK em {}%'.format(round(abs(perct), 2))
+        qcapresult = 'A vazão captada é {}% maior do que o máximo permitido'.format(round(abs(perct), 2))
         
     resultado1.set(qcapresult)
     
@@ -64,23 +66,24 @@ def btn_click():
     if qvert < 0:
         t = v/abs(qvert)
         t = t/(60*60)
-        r = '''esvaziamento em {} horas\nvazão vertida: {}'''.format(round(t,0), round(qvert, 2))
+        r = 'O reservatório será esvaziado em {} horas - vazão vertida: {}.'.format(round(t,0), round(qvert, 2))
     else:
-        r = 'vazão vertida: {}'.format(round(qvert, 2))
+        r = 'O reservatário não será esvaziado - vazão vertida: {}.'.format(round(qvert, 2))
         
     resultado.set(r)
 
     if v_anual > v:
-        r = 'anual = {} x armazenado'.format(round(v_anual/v,2))
+        r = 'A captação anual é {} vezes o volume armazenado'.format(round(v_anual/v,2))
     else:
-        r = 'OK'
+        r = 'A captação anual é menor do que o volume armazenado.'
 
     resultado2.set(r)
     
 root = Tk()
 root.protocol("WM_DELETE_WINDOW", quit_me)
 root.title("Balanço hídrico")
-root.resizable(True, True)
+#root.geometry("500x500")
+root.resizable(False, False)
 
 label_1 = Label(root, text="Volume armazenado (m³)")
 label_1.grid(row=0, column=0, sticky=W, padx=(5, 5), pady=(5, 5))
@@ -114,26 +117,41 @@ textbox4 = Entry(root, width=8)
 textbox4.grid(row=5, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
 units=["m³/s", "m³/h"]
 comboExample = ttk.Combobox(root, values=units, width=8)
-comboExample.grid(row=5, column=2, sticky=W, padx=(5, 5), pady=(5, 5))
+comboExample.grid(row=5, column=2, sticky=E, padx=(5, 5), pady=(5, 5))
+
+label_horas = Label(root, text="Horas de captação por dia")
+label_horas.grid(row=6, column=0, sticky=W, padx=(5, 5), pady=(5, 5))
+textboxhoras = Entry(root, width=8)
+textboxhoras.grid(row=6, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
+textboxhoras.insert(END, '24')
+
+label_dias = Label(root, text="Dias de captação por ano")
+label_dias.grid(row=7, column=0, sticky=W, padx=(5, 5), pady=(5, 5))
+textboxdias = Entry(root, width=8)
+textboxdias.grid(row=7, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
+textboxdias.insert(END, '365')
 
 resultado = StringVar()
 label_5 = Label(root, textvariable=resultado)
-label_5.grid(row=8, column=0, columnspan = 2, padx=(5, 5), pady=(5, 5))
+label_5.grid(row=10, column=0, sticky=W, columnspan=3, padx=(5, 5), pady=(5, 5))
 
 resultado1 = StringVar()
 label_6 = Label(root, textvariable=resultado1)
-label_6.grid(row=5, column=3, sticky=W, padx=(5, 5), pady=(5, 5))
+label_6.grid(row=11, column=0, sticky=W, columnspan=3, padx=(5, 5), pady=(5, 5))
 
 resultado2 = StringVar()
 label_7 = Label(root, textvariable=resultado2)
-label_7.grid(row=1, column=3, padx=(5, 5), pady=(5, 5), sticky=W)
+label_7.grid(row=12, column=0, padx=(5, 5), pady=(5, 5), sticky=W, columnspan=3)
 
 resultado3 = StringVar()
 label_8 = Label(root, textvariable=resultado3)
-label_8.grid(row=2, column=3, padx=(5, 5), pady=(5, 5), sticky=W)
+label_8.grid(row=13, column=0, padx=(5, 5), pady=(5, 5), sticky=W, columnspan=3)
+
+label_dummy = Label(root, text="*"*35+str('Resultado')+"*"*35)
+label_dummy.grid(row=9, column=0, sticky=W, columnspan=3, padx=(5, 5), pady=(5, 5))
 
 #botao
 btn = Button(root, text="Calcular", command=btn_click)
-btn.grid(row=6, column=1, sticky=E, padx=(5, 5), pady=(5, 5))
+btn.grid(row=8, column=2, sticky=E, padx=(5, 5), pady=(5, 5))
 
 root.mainloop()
