@@ -2,6 +2,9 @@
 
 from tkinter import *
 from tkinter import ttk
+import ctypes
+ 
+ctypes.windll.shcore.SetProcessDpiAwareness(1) #texto nitido em monitores de alta resolucao
 
 def vp(vmin, vmax):
     vpv = (vmax-vmin)/vmin*100
@@ -45,7 +48,7 @@ def btn_click():
         qremresult = 'A vazão remanescente é inferior ao máximo outorgável.'
     else:
         perct = vp(maxout, qrem)
-        qremresult = 'A vazão remanescente é {}% menor do que máximo outorgável.'.format(round(perct, 1))
+        qremresult = 'A vazão remanescente é {}% menor do que mínimo permitido.'.format(round(perct, 1))
 
     resultado3.set(qremresult)  
     

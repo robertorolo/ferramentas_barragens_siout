@@ -3,6 +3,9 @@
 from tkinter import *
 from tkinter import ttk
 import math
+import ctypes
+ 
+ctypes.windll.shcore.SetProcessDpiAwareness(1) #texto nitido em monitores de alta resolucao
 
 def quit_me():
     print('quit')

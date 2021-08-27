@@ -7,6 +7,9 @@ matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg 
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 8
+import ctypes
+ 
+ctypes.windll.shcore.SetProcessDpiAwareness(1) #texto nitido em monitores de alta resolucao
 
 
 def quit_me():
